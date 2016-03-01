@@ -1,0 +1,66 @@
+.buzz-list.buzz{
+  min-width: 800px;
+
+}
+
+.la-buzz-post{
+  min-width: 1000px;
+}
+
+
+
+.la-margin{
+  margin-top: 50px;
+}
+.la-input-group{
+  margin-top: 10px;
+}
+.la-post-create {
+  border:1px solid black;
+  padding: 20px;
+  background-color: #faf2cc;
+  width: 800px;
+
+}
+
+.la-mydropdwn{
+  padding-top: 180px;
+  padding-left: 10px;
+}
+.la-input-group.inline{
+  display: inline;
+  margin-top: 500px;
+}
+
+.la-group-filter{
+  margin-top: 100px;
+}
+
+
+.la-picUpload{
+  padding-top: 185px;
+  padding-left: 90px;
+}
+
+.la-sendBuzz{
+  padding-top: 185px;
+  padding-left: 150px;
+
+}
+
+.la-like-dislike-size{
+  font-size: 5px;
+}
+
+.la-font-color{
+  color:#00b3ee;
+  font-size: 12px;
+}
+
+.la-date-font{
+  font-size: 12px;
+}
+
+.la-div-align{
+  text-align: center;
+}

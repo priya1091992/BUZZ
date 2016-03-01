@@ -1,0 +1,60 @@
+
+  <form class="navbar-form navbar-left " role="search">
+
+
+    <div class="form-group">
+      <div class="row post-create">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        &nbsp;&nbsp;<label>Complaint Box</label>
+        <div class="input-group">
+          <span class="input-group-addon" >Content</span>
+          <textarea type="text" class="form-control" id="content" aria-describedby="basic-addon3"></textarea>
+        </div>
+
+        <label for="upload" class="input-group.inline">
+          <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+          <input type="file" id="upload" style="display:none">
+        </label>
+
+
+        <div class="pull-right">
+          <!--<button><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></button>-->
+          <button ng-click="postfunc()"><img src="../assets/images/post_btn.png"></button>
+        </div>
+      </div>
+    </div>
+
+    </div>
+      </div>
+
+    </div>
+
+  </form>
+
+
+
+
+
+
+  <div class="margin">
+    <div class="buzz-list">
+
+      <div class="row">
+        <div class="col-sm-10 buzz"  ng-repeat="buzz in BuzzHome.buzzs">
+          <div class="thumbnail">
+            <!--<img src="..." alt="...">-->
+            <div class="caption">
+              <h3>{{buzz.header}}</h3>
+              <p>{{buzz.content}}</p>
+
+              <span class="pull-left"><button class="like-dislike-size"><img src="../../assets/images/like.png"></button></span>
+              &nbsp;&nbsp;<span class="pull-right"><button class="like-dislike-size"><img src="../../assets/images/dislike.png"></button></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
