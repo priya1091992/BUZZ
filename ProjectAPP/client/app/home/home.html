@@ -1,0 +1,32 @@
+<div ng-controller="HomeCtrl">
+  <div ng-include="'components/navbar/navbar.html'"></div>
+</div>
+
+
+
+<!-- Page Content -->
+<div class="col-md-3">
+  <p class="lead">TTND BUZZ</p>
+  <div class="list-group">
+    <a ui-sref="home.buzz" class="list-group-item active">BUZZ <img src="../assets/images/next_orange.png" class="pull-right"></a>
+    <a ui-sref="home.compl" class="list-group-item">COMPLAINTS <img src="../assets/images/next_orange.png" class="pull-right"></a>
+  </div>
+  <span class="text"><img src="../assets/images/@.png" class="img_size"> 2016 To The New Digital </span>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="text"><a href="About">About</a> </span>&nbsp;
+  <span class="text"><a href="About">Help</a></span>
+</div>
+<div class="col-md-5">
+  <div class="container">
+
+
+
+
+    <div ui-view="" class="profile-content"></div>
+
+  </div>
+
+</div>
+
+
+

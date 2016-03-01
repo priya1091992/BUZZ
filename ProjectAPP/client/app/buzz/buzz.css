@@ -1,0 +1,62 @@
+.buzz-list .buzz{
+  min-width: 800px;
+
+}
+
+.buzz-post{
+  min-width: 1000px;
+}
+
+
+
+.margin{
+  margin-top: 300px;
+}
+.input-group{
+  margin-top: 10px;
+}
+.post-create {
+  border:1px solid black;
+  padding: 20px;
+  background-color: #faf2cc;
+  width: 800px;
+
+}
+
+.mydropdwn{
+  padding-top: 180px;
+  padding-left: 10px;
+}
+.input-group.inline{
+  display: inline;
+  margin-top: 500px;
+}
+
+
+.picUpload{
+  padding-top: 185px;
+  padding-left: 90px;
+}
+
+.sendBuzz{
+  padding-top: 185px;
+  padding-left: 150px;
+
+}
+
+.like-dislike-size{
+  font-size: 5px;
+}
+
+.font-color{
+  color:#00b3ee;
+  font-size: 12px;
+}
+
+.date-font{
+  font-size: 12px;
+}
+
+.div-align{
+  text-align: center;
+}
