@@ -1,0 +1,41 @@
+<div >
+  <div infinite-scroll="Complaint.scrollFunction()" infinite-scroll-distance="0" infinite-scroll-disabled="Complaint.busy"></div>
+  <div ng-hide="checked">
+    <div class="row view-table">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Issue ID</th>
+          <th>Department</th>
+          <th>Assigned To</th>
+          <th>Status</th>
+          <th>Save</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="buzz in Complaint.compl">
+        <tr ng-hide="Complaint.compl[$index].status=='closed'">
+          <td>{{buzz.issue_id}}</td>
+          <td>{{buzz.department}}</td>
+          <td>
+            <div class="btn-group">
+              <select class="btn btn-primary"  ng-model="buzz.assignedto" id="id1">
+                <option ng-repeat="user in Complaint.users"> {{user.name}}</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <select class="btn btn-primary" ng-model="buzz.status" id="id2">
+                <option value="open" selected>Open</option>
+                <option value="inprocess">In process</option>
+                <option value="Resolved">Resolved</option>
+              </select>
+            </div>
+          </td>
+          <td><button type="button" class="btn btn-info" ng-click="Complaint.changeStatus(buzz._id, $index,buzz.status,buzz.assignedto)"> Save</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

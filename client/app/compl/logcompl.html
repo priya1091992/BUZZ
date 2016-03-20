@@ -1,0 +1,30 @@
+<div >
+  <div infinite-scroll="Complaint.scrollFunction()" infinite-scroll-distance="0" infinite-scroll-disabled="Complaint.busy"></div>
+  <div ng-hide="checked">
+    <div class="row view-table">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Issue ID</th>
+          <th>Department</th>
+          <th>Assigned To</th>
+          <th>Status</th>
+          <th ng-show="User.role=='user'">Close</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="buzz in Complaint.compl">
+          <td><a hre="" ng-mouseover="Complaint.showDetails($index)"> {{buzz.issue_id}}</a></td>
+          <td>{{buzz.department}}</td>
+          <td>{{buzz.assignedto}}</td>
+         <td>{{buzz.status}}</td>
+          <td ng-show="User.role=='user'"><button type="button" class="btn btn-info" ng-click="Complaint.changeStatus(buzz._id, $index,'closed',buzz.assignedto)">Close</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

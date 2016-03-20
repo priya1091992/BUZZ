@@ -8,8 +8,8 @@ angular.module('projectAppApp', [
   'ui.router',
   'ui.bootstrap',
   'angularMoment',
-  'ngSanitize',
-  'readMore'
+  'readMore',
+   'infinite-scroll'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -33,7 +33,7 @@ angular.module('projectAppApp', [
       // Intercept 401s and redirect you to login
       responseError: function(response) {
         if(response.status === 401) {
-          $location.path('/login');
+          $location.path('/home');
           // remove any stale tokens
           $cookieStore.remove('token');
           return $q.reject(response);

@@ -6,10 +6,11 @@
 
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
+console.log("IN app.js")
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
+global.appPath = __dirname;
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -18,6 +19,7 @@ mongoose.connection.on('error', function(err) {
 	process.exit(-1);
 	}
 );
+
 // Populate DB with sample data
 if(config.seedDB) { require('./config/seed'); }
 
@@ -31,6 +33,7 @@ var socketio = require('socket.io')(server, {
 require('./config/socketio')(socketio);
 require('./config/express')(app);
 require('./routes')(app);
+
 
 // Start server
 server.listen(config.port, config.ip, function () {

@@ -1,80 +1,59 @@
 .buzz-list .buzz{
   min-width: 800px;
-
-}
-
-.buzz-post{
-  min-width: 1000px;
-}
-.margin-preview{
-  margin-top: 300px;
-
   min-height: 150px;
+}
+.post-preview{
+  margin-top: 350px;
+  min-height: 300px;
   border:1px solid black;
+  min-width: 600px;
 }
-
-
-.likes-align{
-  padding-top: 3%;
+.post{
+  margin-top: 350px;
 }
-
-
-.margin{
-  margin-top: 300px;
-}
-
 .input-group{
   margin-top: 10px;
 }
-
 .post-create {
   border:1px solid black;
   padding: 20px;
   background-color: #faf2cc;
   width: 800px;
-
-}
-
-.mydropdwn{
-  padding-top: 180px;
-  padding-left: 10px;
 }
 .input-group.inline{
   display: inline;
   margin-top: 500px;
 }
-
 .group-filter{
   margin-top: 100px;
 }
-
-
-.picUpload{
-  padding-top: 185px;
-  padding-left: 90px;
-}
-
 .sendBuzz{
   padding-top: 185px;
   padding-left: 150px;
-
 }
-
-.like-dislike-size{
-  font-size: 5px;
-}
-
-.font-color{
+.preview{
   color:#00b3ee;
   font-size: 12px;
   padding-top: 5px;
   padding-left: 10px;
 }
-
-.date-font{
+.buzz-date{
   font-size: 12px;
 }
-
-.div-align{
+.preview-div{
   text-align: center;
+}
+.angular-with-newlines {
+  white-space: pre-wrap;
+}
+.preview-likes{
+  padding-top: 150px;
+}
+.media{
+  width: 400px;
+  heigth:200px;
+  border-color: transparent;
+}
+.preview-checkbox{
+  padding-top: 180px;
 }

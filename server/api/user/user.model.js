@@ -7,7 +7,7 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
   name: String,
-  email: { type: String, lowercase:true, match:/^[a-z]+[a-z0-9._]+@+tothenew+\.com$/ },
+  email: { type: String, lowercase:true },
   role: {
     type: String,
     default: 'user'
@@ -18,6 +18,17 @@ var UserSchema = new Schema({
   google: {},
   github: {}
 });
+
+
+
+UserSchema.pre('save', function (next) {
+  if(!/@tothenew.com$/.test(this.email)) {
+   next(new Error("Login with only 'tothenew.com'"));
+  }
+  next();
+
+  });
+
 
 /**
  * Virtuals

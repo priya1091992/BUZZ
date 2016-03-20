@@ -8,6 +8,11 @@ exports.setup = function (User, config) {
       callbackURL: config.google.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
+
+     console.log("in function passport");
+      console.log(accessToken,refreshToken,profile,done)
+
+
       User.findOne({
         'google.id': profile.id
       }, function(err, user) {

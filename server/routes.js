@@ -1,14 +1,13 @@
 /**
  * Main application routes
  */
-
 'use strict';
 
 var errors = require('./components/errors');
 var path = require('path');
-
+var formidable = require('formidable'),
+  util = require('util');
 module.exports = function(app) {
-
   // Insert routes below
   app.use('/api/tickets', require('./api/ticket'));
   app.use('/api/posts', require('./api/post'));
@@ -16,9 +15,10 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));
+  app.use('/images', require('./components'))
 
   // All undefined asset or api routes should return a 404
-  app.route('/:url(api|auth|components|app|bower_components|assets)/*')
+  app.route('/:url(api|auth|components|app|bower_components|assets)')
    .get(errors[404]);
 
   // All other routes should redirect to the index.html
@@ -27,3 +27,4 @@ module.exports = function(app) {
       res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
     });
 };
+

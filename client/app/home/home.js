@@ -3,7 +3,6 @@ angular.module('projectAppApp')
     $stateProvider
       .state('home', {
         url: '/home',
-        abstract:true,
         templateUrl: 'app/home/home.html',
         controller: 'HomeCtrl'
       });

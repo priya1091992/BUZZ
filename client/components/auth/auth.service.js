@@ -24,17 +24,17 @@ angular.module('projectAppApp')
           email: user.email,
           password: user.password
         }).
-        success(function(data) {
-          $cookieStore.put('token', data.token);
-          currentUser = User.get();
-          deferred.resolve(data);
-          return cb();
-        }).
-        error(function(err) {
-          this.logout();
-          deferred.reject(err);
-          return cb(err);
-        }.bind(this));
+          success(function(data) {
+            $cookieStore.put('token', data.token);
+            currentUser = User.get();
+            deferred.resolve(data);
+            return cb();
+          }).
+          error(function(err) {
+            this.logout();
+            deferred.reject(err);
+            return cb(err);
+          }.bind(this));
 
         return deferred.promise;
       },
@@ -45,6 +45,7 @@ angular.module('projectAppApp')
        * @param  {Function}
        */
       logout: function() {
+        console.log($cookieStore)
         $cookieStore.remove('token');
         currentUser = {};
       },
@@ -133,7 +134,7 @@ angular.module('projectAppApp')
        * @return {Boolean}
        */
       isAdmin: function() {
-        return currentUser.role === 'admin';
+        return currentUser.role === 'Admin';
       },
 
       /**

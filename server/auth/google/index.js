@@ -5,10 +5,9 @@ var passport = require('passport');
 var auth = require('../auth.service');
 
 var router = express.Router();
-
 router
   .get('/', passport.authenticate('google', {
-    successRedirect: '/#home',
+    successRedirect: '/home',
     failureRedirect: '/main',
     scope: [
       'https://www.googleapis.com/auth/userinfo.profile',
@@ -18,7 +17,7 @@ router
   }))
 
   .get('/callback', passport.authenticate('google', {
-    failureRedirect: '/signup',
+    failureRedirect: '/main',
     session: false
   }), auth.setTokenCookie);
 

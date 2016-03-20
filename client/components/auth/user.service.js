@@ -17,6 +17,15 @@ angular.module('projectAppApp')
         params: {
           id:'me'
         }
+      },
+      getall:{
+        method:'GET',
+        isArray:true,
+        params:{
+
+        }
+
       }
+
 	  });
   });

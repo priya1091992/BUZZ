@@ -1,0 +1,38 @@
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+    <div class="container div-form">
+      <form role="form">
+        <div>
+          <span class="glyphicon glyphicon-pencil compl-head" aria-hidden="true"></span>
+          &nbsp;&nbsp;<label>Complaint</label>
+        </div>
+        <div class="div-department">
+          <span>
+            <label>Select title</label>
+            <textarea class="form-control" id="title" ng-model="Complaint.newCompl.title"  placeholder="Write Title"></textarea>
+          </span></br></br>
+          <span  class="form-group">
+            <label>Select Department</label>
+            <select class="form-control wi"  ng-model= "Complaint.newCompl.department">
+              <option>IT</option>
+              <option>HR</option>
+              <option>INFRA</option>
+            </select>
+          </span>
+        </div>
+        <div>
+          <label class="label-concern">Concern</label>
+          <textarea class="form-control" id="exampleTextarea" rows="5" ng-model="Complaint.newCompl.concern"  placeholder="Write your concern"></textarea>
+        </div>
+        <div class="image-div">
+          <form enctype="multipart/form-data" id="uploadForm" name="form_image">
+            <input type="file" name="upload" multiple="multiple" id="compl_photo">
+            <button ng-click="imageComplPost()"><img src="../assets/images/post_btn.png"></button>
+          </form>
+            <span>
+      <button type="submit" class="btn btn-primary pull-right" ng-click="complfunc()" ng-disabled="!((Complaint.newCompl.department) && (Complaint.newCompl.concern))">Submit</button></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,6 @@ angular.module('projectAppApp')
       .state('home.lostFound', {
         url: '/lostFound',
         templateUrl: 'app/lostFound/lostFound.html',
-        controller: 'LostFoundCtrl'
+        controller: 'LostFoundCtrl as LostFound'
       });
   });

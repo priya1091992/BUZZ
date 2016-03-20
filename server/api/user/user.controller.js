@@ -20,6 +20,14 @@ exports.index = function(req, res) {
   });
 };
 
+
+exports.showall = function(req, res) {
+  User.find({},function (err, users) {
+    if(err) { console.log(err); }
+    return res.status(200).json(users);
+  });
+};
+
 /**
  * Creates a new user
  */
@@ -28,9 +36,10 @@ exports.create = function (req, res, next) {
   newUser.provider = 'local';
   newUser.role = 'user';
   newUser.save(function(err, user) {
-    if (err) return validationError(res, err);
+    if (err) return authCallback(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
+
   });
 };
 
@@ -39,7 +48,6 @@ exports.create = function (req, res, next) {
  */
 exports.show = function (req, res, next) {
   var userId = req.params.id;
-
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.status(401).send('Unauthorized');
@@ -97,5 +105,5 @@ exports.me = function(req, res, next) {
  * Authentication callback
  */
 exports.authCallback = function(req, res, next) {
-  res.redirect('/');
+  res.redirect('/main');
 };

@@ -1,15 +1,11 @@
-'use strict';
+var express=require('express');
+var controller=require('./ticket.controller');
 
-var express = require('express');
-var controller = require('./ticket.controller');
+var router=express.Router();
 
-var router = express.Router();
-
-router.get('/', controller.index);
-router.get('/:id', controller.show);
-router.post('/', controller.create);
-router.put('/:id', controller.update);
-router.patch('/:id', controller.update);
-router.delete('/:id', controller.destroy);
-
-module.exports = router;
+router.get('/',function(req,res,next){
+  next();
+},controller.find);
+router.post('/',controller.create);
+router.put('/:id',controller.update1);
+module.exports=router;

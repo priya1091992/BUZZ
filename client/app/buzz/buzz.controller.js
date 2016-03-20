@@ -2,96 +2,113 @@
 
 
 angular.module('projectAppApp')
-  .controller('BuzzCtrl', function ($scope, $http, Auth, $location, $timeout) {
-    var BuzzHome = this;
-    BuzzHome.message = 'Hello';
-    BuzzHome.buzzs = [];
+  .controller('BuzzCtrl', ['$scope', '$http', 'Auth', 'BuzzApi',  function ($scope, $http, Auth,BuzzApi) {
+    var abc = this;
+    abc.newBuzz = {};
+    abc.buzzs = [];
+    abc.newBuzz.category='BUZZ';
+    abc.newBuzz.isLoggedIn = Auth.isLoggedIn;
+    abc.newBuzz.isAdmin = Auth.isAdmin;
+    abc.newBuzz.getCurrentUser = Auth.getCurrentUser;
 
-    $scope.postd={};
-    $scope.postd.category='BUZZ';
-    $scope.isLoggedIn = Auth.isLoggedIn;
-    $scope.isAdmin = Auth.isAdmin;
-
-    $scope.getCurrentUser = Auth.getCurrentUser;
-    //console.log($scope.getCurrentUser().name);
-
-    $scope.Category = function(categ){
-      $scope.postd.category = categ;
-
+    abc.Category = function(categ){
+      abc.newBuzz.category = categ;
       if(categ == 'BUZZ'){
-        $scope.cat='BUZZ';
-        $scope.postd.header='';
+        this.newBuzz.cat='BUZZ';
+        this.newBuzz.header='';
       }else{
-        $scope.cat='Lost & Found';
-        $scope.postd.header="Lost and Found"
+        this.newBuzz.cat='Lost & Found';
+        this.newBuzz.header="Lost and Found";
       }
     }
 
-    //console.log($scope.postd.category);
-    //console.log($scope.postd);
+    abc.newBuzz.name=abc.newBuzz.getCurrentUser().name;
+    abc.newBuzz.email=abc.newBuzz.getCurrentUser().email;
 
-    var refresh=function(){
-      $http.get("/api/posts")
-        .then(function(response){
-          if(response.data.length){
-            BuzzHome.buzzs = response.data
-          }
-        });
-    }
-
-
-    refresh();
-
-    $scope.minLimit=2;
-    $scope.readmore=function(){
-      $scope.maxLimit = 10000;
-    };
-    $scope.categoryFilter = function(buzz) {
-    }
-
-
-
-    $scope.postd.name=$scope.getCurrentUser().name;
-    $scope.postd.email=$scope.getCurrentUser().email;
-
-
-
-    console.log("hello")
-    $scope.postfunc=function(){
-      console.log($scope.postd);
-      $scope.postd.name=$scope.getCurrentUser().name;
-      $scope.postd.email=$scope.getCurrentUser().email;
-
-      $http.post("/api/posts", $scope.postd).success(function(response){
-        //console.log(response);
-        //console.log($scope.postd.likes);
-        refresh();
-
+    abc.imagePost=function(){
+      var photo = document.getElementById("photo");
+      var file = photo.files[0];
+      var fd = new FormData();
+      fd.append('file', file);
+      $http.post('/images/uploads', fd, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+      }).success(function (data) {
+        if(data.id===undefined){
+          abc.newBuzz.media_url=' ';
+        }
+        else {
+          var a = "../uploads/" + data.id;
+          abc.newBuzz.media_url = a;
+        }
       })
     }
 
 
+    var size;
+    abc.buzzs=[];
+    abc.isLoading=false;
+    abc.hasMore=true;
+    var limit=4;
+    var off =0;
 
-    $scope.count = function (value) {
-      console.log(value);
-      value=value+1;
-      console.log(value);
-      var data = $.param({
-        likes: value
-      });
+    abc.pagingFunction=function(){
+      if(!abc.isLoading && abc.hasMore){
+        abc.isLoading = true;
 
-
-      console.log(BuzzHome.buzzs[0].likes);
-
-
-      console.log(BuzzHome.buzzs[0]._id);
-      $http.put('/api/posts/'+$scope.BuzzHome.buzzs._id+ $scope.BuzzHome.buzzs)
-        .success(function (data, status, headers) {
-          $scope.ServerResponse = data;
-          //console.log(data);
-          refesh();
-        })
-        .error(function (data, status, header, config) {
+        BuzzApi.list({off: off, limit:limit},function(data){
+          off =off +  data.length
+          if(abc.buzzs && abc.buzzs.length){
+            abc.buzzs = abc.buzzs.concat(data);
+            //console.info("after", abc.buzzs.length)
+          }else{
+            abc.buzzs = data;
+          }
+          if(data.length < limit){
+            abc.hasMore = false;
+          }
+          abc.isLoading = false;
         });
-    };
-  });
+      }
+    }
+
+var fd=abc.newBuzz;
+
+    $scope.postfunc=function() {
+      BuzzApi.addBuzz(fd, function (data) {
+        abc.buzzs.unshift(data);
+      });
+    }
+
+
+
+   $scope.minlength=6;
+    $scope.cal=function(index){
+      abc.buzzs[index].readmore =function(){
+        abc.buzzs[index].flag=true;
+        abc.buzzs[index].minlength=1000;
+    }
+      abc.buzzs[index].readmore();
+
+    }
+
+
+
+
+
+    abc.count = function (id, choice, postIndex) {
+      var obj={
+        id:id,
+        choice:choice,
+        currentUser:abc.newBuzz.name
+      }
+      $http.put("/api/posts/" + id,obj)
+        .success(function(data) {
+          abc.buzzs[ postIndex] = data;
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+        });
+    }
+
+  }]);

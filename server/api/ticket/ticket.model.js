@@ -1,38 +1,33 @@
 'use strict';
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ticketSchema = new Schema({
+  status: {type: String, default: 'OPEN'}, //open. resolved, inProgress
+  issue_date: {type: Date, default: Date.now},
+  department: String, //admin, it, hr, infra
+  issue_id: {type: Number, default:1},
+  title: String,
+  concern: String,
+  user: String,
+  image_url: String,
+  email: String,
+  assignedto: {type: String, default: 'NONE'}
 
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
-var TicketSchema = new Schema({
-//  name: String,
-//  info: String,
-//  active: Boolean
-//  category:{type:String, default:'BUZZ'},//[BUZZ, LAF]
-//  dateCreated:{type:Number, default:Date.now()},
-//  lastUpdated:{type:Number, default:Date.now()},
-//  status: String, //[PUBLISHED, DRAFT]
-//
-//  header: String,
-//  content: String,
-//  lastContent:String,
-//  viewed:{type:Number, default:0},
-//  media:{
-//    category:{type:String, default:'Image'} ,//[VIDEO, IMAGE]
-//    url:String
-//  },
-//  createdBy:{
-//    id:String,
-//    name:String,
-//    email:String
-//  },
-//  active:Boolean
-
-  status:String, //open. resolved, inProgress
-  Date:{type:Number, default:Date.now()},
-  Department:String, //admin, it, hr, infra
-  IssueId:{type:Number},
-  title:String,
-  Concern:String
 });
 
-module.exports = mongoose.model('Ticket', TicketSchema);
+var model = mongoose.model('ticket', ticketSchema);
+ticketSchema.pre('save', function (next) {
+  var id = this;
+  model.findOne({}, {}, {sort: {issue_date: -1}}, function (error, ticket) {
+    if (error)
+      console.log("Error:",error);
+    if(ticket!=null){
+    id.issue_id=ticket.issue_id+1;
+    }
+    next();
+  });
+});
+
+module.exports = model;
+
+

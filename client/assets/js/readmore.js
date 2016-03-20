@@ -18,8 +18,8 @@ readMore.directive('readMore', function() {
         scope: {
             text: '=ngModel'
         },
-        template:"<p> {{text | readMoreFilter:[text, countingWords, textLength] }}" +
-            "<a ng-show='showLinks' ng-click='changeLength()' class='color3'>" +
+        template:"<p> {{text | readMoreFilter:[text, countingWords, textLength]}}" +
+            "<a ng-show='showLinks' ng-click='changeLength()' class='color3' >" +
             "<strong ng-show='isExpanded'>  Show Less</strong>" +
             "<strong ng-show='!isExpanded'>  Show More</strong>" +
             "</a>" +
@@ -45,6 +45,7 @@ readMore.directive('readMore', function() {
             }]
     };
 });
+
 readMore.filter('readMoreFilter', function() {
     return function(str, args) {
         var strToReturn = str,
@@ -87,7 +88,10 @@ readMore.filter('readMoreFilter', function() {
 
             }
         }
-        //console.log('strToReturn');
         return strToReturn;
     };
 });
+
+
+
+readMore.linkFilter
