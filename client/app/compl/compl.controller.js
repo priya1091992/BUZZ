@@ -13,12 +13,12 @@ angular.module('projectAppApp')
     Complaint.newCompl.user=Complaint.newCompl.getCurrentUser().name;
     Complaint.newCompl.email=Complaint.newCompl.getCurrentUser().email;
     var user=Complaint.newCompl.email;
+    Complaint.newCompl.department='HR';
 
     Complaint.users=[];
     User.getall( function (data) {
       Complaint.users=data;
     });
-
 
 
     $scope.closedCompl=[];
@@ -93,6 +93,9 @@ angular.module('projectAppApp')
       ComplApi.addCompl(fd, function (data) {
         Complaint.compl.unshift(data);
         Complaint.newCompl.image_url = " "
+        Complaint.newCompl.concern=null;
+        Complaint.newCompl.title=null;
+        Complaint.newCompl.department='HR';
       });
     }
 

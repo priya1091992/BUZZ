@@ -51,7 +51,9 @@
     <span>{{BuzzHome.newBuzz.getCurrentUser().name}} &nbsp;BUZZ</span>
     (<span>{{BuzzHome.newBuzz.getCurrentUser().email}}</span>)
   </div>
-  <div class="preview-div" ng-hide="BuzzHome.newBuzz.media_url==' '"><span><img ng-hide="BuzzHome.newBuzz.media_url==' '" src="{{BuzzHome.newBuzz.media_url}}" class="media"/></span></div>
+  <!--<div class="preview-div" ng-hide="BuzzHome.newBuzz.media_url==' '"><span><img ng-hide="BuzzHome.newBuzz.media_url==' '" src="{{BuzzHome.newBuzz.media_url}}" class="media"/></span></div>-->
+  <div class="la-div" ng-hide="(!BuzzHome.newBuzz.media_url)"><span><img ng-hide="BuzzHome.newBuzz.media_url==' '" src="{{BuzzHome.newBuzz.media_url}}" width="300px" height="100px"/></span></div>
+
   <div class="preview-div">
     <h3>{{BuzzHome.newBuzz.header}}</h3>
     <span ng-model='buzz.content' class="angular-with-newlines">{{BuzzHome.newBuzz.content}}</span>
@@ -70,7 +72,6 @@
 </div>
 
 
-<!--Data view-->
 <div infinite-scroll="BuzzHome.pagingFunction()" infinite-scroll-distance="0" infinite-scroll-disabled="BuzzHome.busy"></div>
 
 <div class="post" ng-hide="checked">

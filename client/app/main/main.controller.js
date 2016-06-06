@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('projectAppApp')
   .controller('MainCtrl', function ($scope, Auth, $location, $window) {
     console.log(Auth.isLoggedIn())

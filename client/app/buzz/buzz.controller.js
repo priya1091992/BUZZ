@@ -10,7 +10,6 @@ angular.module('projectAppApp')
     abc.newBuzz.isLoggedIn = Auth.isLoggedIn;
     abc.newBuzz.isAdmin = Auth.isAdmin;
     abc.newBuzz.getCurrentUser = Auth.getCurrentUser;
-
     abc.Category = function(categ){
       abc.newBuzz.category = categ;
       if(categ == 'BUZZ'){
@@ -24,7 +23,6 @@ angular.module('projectAppApp')
 
     abc.newBuzz.name=abc.newBuzz.getCurrentUser().name;
     abc.newBuzz.email=abc.newBuzz.getCurrentUser().email;
-
     abc.imagePost=function(){
       var photo = document.getElementById("photo");
       var file = photo.files[0];
@@ -43,7 +41,6 @@ angular.module('projectAppApp')
         }
       })
     }
-
 
     var size;
     abc.buzzs=[];
@@ -77,12 +74,12 @@ var fd=abc.newBuzz;
     $scope.postfunc=function() {
       BuzzApi.addBuzz(fd, function (data) {
         abc.buzzs.unshift(data);
+        abc.newBuzz.header=null;
+        abc.newBuzz.content=null;
       });
     }
 
-
-
-   $scope.minlength=6;
+    $scope.minlength=6;
     $scope.cal=function(index){
       abc.buzzs[index].readmore =function(){
         abc.buzzs[index].flag=true;
@@ -91,10 +88,6 @@ var fd=abc.newBuzz;
       abc.buzzs[index].readmore();
 
     }
-
-
-
-
 
     abc.count = function (id, choice, postIndex) {
       var obj={

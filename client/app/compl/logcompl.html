@@ -1,4 +1,4 @@
-<div >
+<div>
   <div infinite-scroll="Complaint.scrollFunction()" infinite-scroll-distance="0" infinite-scroll-disabled="Complaint.busy"></div>
   <div ng-hide="checked">
     <div class="row view-table">
@@ -14,7 +14,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="buzz in Complaint.compl">
-          <td><a hre="" ng-mouseover="Complaint.showDetails($index)"> {{buzz.issue_id}}</a></td>
+          <td><a href="" ng-mouseover="Complaint.showDetails($index)"> {{buzz.issue_id}}</a></td>
           <td>{{buzz.department}}</td>
           <td>{{buzz.assignedto}}</td>
          <td>{{buzz.status}}</td>
